@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Teedy Custom PMD Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        Custom PMD ruleset for Practice 7 metrics-related checks.
+    </description>
+
+    <!-- LoC -->
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="60"/>
+            <property name="classReportLevel" value="1500"/>
+        </properties>
+    </rule>
+
+    <!-- CC + WMC -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="methodReportLevel" value="10"/>
+            <property name="classReportLevel" value="80"/>
+        </properties>
+    </rule>
+
+    <!-- CBO -->
+    <rule ref="category/java/design.xml/CouplingBetweenObjects">
+        <properties>
+            <property name="threshold" value="20"/>
+        </properties>
+    </rule>
+
+    <!-- LCOM (closest related design/cohesion rule) -->
+    <rule ref="category/java/design.xml/GodClass"/>
+
+</ruleset>
