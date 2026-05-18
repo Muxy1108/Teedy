@@ -1,5 +1,8 @@
 package com.sismics.docs.core.util.action;
 
+import java.util.List;
+import java.util.Set;
+
 import com.google.common.collect.Sets;
 import com.sismics.docs.core.dao.TagDao;
 import com.sismics.docs.core.dao.criteria.TagCriteria;
@@ -7,8 +10,6 @@ import com.sismics.docs.core.dao.dto.DocumentDto;
 import com.sismics.docs.core.dao.dto.TagDto;
 
 import jakarta.json.JsonObject;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Action to remove a tag.
@@ -21,7 +22,6 @@ public class RemoveTagAction extends TagAction {
         if (action.getString("tag") == null) {
             return;
         }
-
 
         String tagId = action.getString("tag");
         TagDao tagDao = new TagDao();
