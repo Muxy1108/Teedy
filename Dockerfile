@@ -68,7 +68,15 @@ RUN mkdir /app && \
     java -jar /opt/jetty/start.jar --add-modules=server,http,webapp,deploy
 
 ADD docs.xml /app/webapps/docs.xml
-ADD docs-web/target/docs-web-*.war /app/webapps/docs.war
+ADD docs-web/target/docs-web-*.war /tmp/docs.war
+
+RUN mkdir -p /tmp/docs-war \
+    && cd /tmp/docs-war \
+    && jar -xf /tmp/docs.war \
+    && cp src/index.html index.html \
+    && sed -i 's#<head>#<head>\n    <base href="/src/">#' index.html \
+    && jar -cf /app/webapps/docs.war -C /tmp/docs-war . \
+    && rm -rf /tmp/docs-war /tmp/docs.war
 
 WORKDIR /app
 
